@@ -3,11 +3,14 @@ import UIKit
 class HomeViewController: UIViewController {
     
     let collectionView: HomeView = HomeView()
-    var characters: [Character] = []
     var canLoad = true
+    let dataManager = DataManager.shared
     
     override func loadView() {
         super.loadView()
+        
+        title = "Rick & Morty"
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         view.addSubview(collectionView)
         collectionView.bindCollection(dataSource: self, delegate: self)
@@ -22,9 +25,6 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         DataManager.shared.getAllCharacters {
-            if let results = DataManager.shared.apiResponse?.results {
-                self.characters = results
-            }
             self.collectionView.characterCollection.reloadData()
         }
     }
@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return characters.count
+        return dataManager.characters.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -40,18 +40,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             preconditionFailure("Cell not found")
         }
         
-        let character = characters[indexPath.row]
+        let character = dataManager.characters[indexPath.row]
+        cell.setupCell(character: character)
         
-        if let cachedImage = DataManager.shared.imageCash.object(forKey: NSNumber(value: character.id)) {
-            cell.setupImage(image: cachedImage)
-        }
-        
-        cell.layer.cornerRadius = 15
-        cell.characterName.text = character.name
-        cell.characterStatus.image = UIImage(named: defineImageStatus(status: character.status)) 
-        cell.characterSpecie.text = character.species
-        cell.backgroundColor = UIColor(named: "greenRick")
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let character = dataManager.characters[indexPath.row]
+        self.navigateToDetails(character: character)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -59,26 +56,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == characters.count-1 && canLoad {
+        if indexPath.row == dataManager.characters.count-1 && canLoad {
             canLoad = false
             DataManager.shared.getAllCharacters {
-                if let results = DataManager.shared.apiResponse?.results {
-                    self.characters += results
-                    self.canLoad = true
-                    collectionView.reloadData()
-                }
+                self.canLoad = true
+                collectionView.reloadData()
             }
         }
     }
     
-    func defineImageStatus(status: String) -> String {
-        if status == "Alive" {
-            return "aliveIcon"
-        } else if status == "Dead" {
-            return "deadIcon"
-        } else {
-            return "unknownIcon"
-        }
+    func navigateToDetails(character: Character) {
+        let viewController = CharacterDetailsViewController()
+        viewController.character = character
+        navigationController?.pushViewController(viewController, animated: true)
     }
+    
 }
 

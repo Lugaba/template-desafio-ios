@@ -89,4 +89,26 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     func setupImage(image: UIImage) {
         self.characterImageView.image = image
     }
+    
+    func setupCell(character: Character) {
+        if let cachedImage = DataManager.shared.imageCash.object(forKey: NSNumber(value: character.id)) {
+            self.setupImage(image: cachedImage)
+        }
+        
+        self.layer.cornerRadius = 15
+        self.characterName.text = character.name
+        self.characterStatus.image = UIImage(named: defineImageStatus(status: character.status))
+        self.characterSpecie.text = character.species
+        self.backgroundColor = UIColor(named: "greenRick")
+    }
+    
+    func defineImageStatus(status: String) -> String {
+        if status == "Alive" {
+            return "aliveIcon"
+        } else if status == "Dead" {
+            return "deadIcon"
+        } else {
+            return "unknownIcon"
+        }
+    }
 }

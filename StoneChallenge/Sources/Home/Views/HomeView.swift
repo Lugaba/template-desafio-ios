@@ -14,6 +14,7 @@ class HomeView: UIView {
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: frame, collectionViewLayout: layout)
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
+        collectionView.backgroundColor = UIColor(named: "backgroundRick")
         return collectionView
     }()
     

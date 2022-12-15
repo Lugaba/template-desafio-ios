@@ -10,10 +10,10 @@ import UIKit
 
 class DataManager {
     static let shared = DataManager()
-    let baseURL = "https://rickandmortyapi.com/api/"
-    public let imageCash = NSCache<NSNumber, UIImage>()
     
-    var apiResponse: ApiResponse?
+    var characters: [Character] = []
+    var next: String? = "https://rickandmortyapi.com/api/character"
+    public let imageCash = NSCache<NSNumber, UIImage>()
     
     private init() {}
     
@@ -21,14 +21,12 @@ class DataManager {
         var url: URL?
         let session: URLSession = URLSession.shared
         
-        if let nextURL = apiResponse?.info.next {
+        if let nextURL = self.next {
             url = URL(string: nextURL)!
         } else {
-            if apiResponse != nil {
+            if self.next == nil {
                 print("No more Characters")
                 return
-            } else {
-                url = URL(string: baseURL + "character")!
             }
         }
         
@@ -45,12 +43,12 @@ class DataManager {
             }
             
             do {
-                self.apiResponse = try JSONDecoder().decode(ApiResponse.self, from: data)
+                let apiResponse = try JSONDecoder().decode(ApiResponse.self, from: data)
+                self.characters += apiResponse.results
+                self.next = apiResponse.info.next
                 
-                if let characters = self.apiResponse?.results {
-                    for character in characters {
-                        self.loadImage(character: character)
-                    }
+                for character in self.characters {
+                    self.loadImage(character: character)
                 }
                 
                 DispatchQueue.main.async {
