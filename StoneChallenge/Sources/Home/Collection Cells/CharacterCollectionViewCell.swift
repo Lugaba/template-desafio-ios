@@ -10,14 +10,14 @@ import UIKit
 class CharacterCollectionViewCell: UICollectionViewCell {
     static let identifier = "characterCollectionCell"
     
-    lazy var characterImageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 15
         return imageView
     }()
     
-    lazy var characterName: UILabel = {
+    lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "NAME"
         label.textColor = .white
@@ -25,13 +25,13 @@ class CharacterCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var characterStatus: UIImageView = {
+    lazy var statusImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    lazy var characterSpecie: UILabel = {
+    lazy var specieLabel: UILabel = {
         let label = UILabel()
         label.text = "SPECIE"
         label.textColor = .white
@@ -48,57 +48,57 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     }
     
     func setUp() {
-        self.contentView.addSubview(characterImageView)
-        self.contentView.addSubview(characterName)
-        self.contentView.addSubview(characterStatus)
-        self.contentView.addSubview(characterSpecie)
+        self.contentView.addSubview(imageView)
+        self.contentView.addSubview(nameLabel)
+        self.contentView.addSubview(statusImageView)
+        self.contentView.addSubview(specieLabel)
 
         createConstraints()
     }
     
     func createConstraints() {
-        characterImageView.translatesAutoresizingMaskIntoConstraints = false
-        characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
-        characterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        imageView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
 
-        characterImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         
         
-        characterName.translatesAutoresizingMaskIntoConstraints = false
-        characterName.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 8).isActive = true
-        characterName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
-        characterName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 8).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16).isActive = true
+        nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
         
-        characterSpecie.translatesAutoresizingMaskIntoConstraints = false
-        characterSpecie.leadingAnchor.constraint(equalTo: characterName.leadingAnchor).isActive = true
-        characterSpecie.topAnchor.constraint(equalTo: characterName.bottomAnchor, constant: 8).isActive = true
+        specieLabel.translatesAutoresizingMaskIntoConstraints = false
+        specieLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor).isActive = true
+        specieLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8).isActive = true
 
-        characterSpecie.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
+        specieLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
-        characterStatus.translatesAutoresizingMaskIntoConstraints = false
-        characterStatus.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        characterStatus.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
-        characterStatus.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        characterStatus.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        statusImageView.translatesAutoresizingMaskIntoConstraints = false
+        statusImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        statusImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16).isActive = true
+        statusImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        statusImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
 
     }
     
     func setupImage(image: UIImage) {
-        self.characterImageView.image = image
+        self.imageView.image = image
     }
     
     func setupCell(character: Character) {
-        if let cachedImage = DataManager.shared.imageCash.object(forKey: NSNumber(value: character.id)) {
-            self.setupImage(image: cachedImage)
+        DataManager.shared.loadImage(character: character) { image in
+            self.imageView.image = image
         }
         
         self.layer.cornerRadius = 15
-        self.characterName.text = character.name
-        self.characterStatus.image = UIImage(named: defineImageStatus(status: character.status))
-        self.characterSpecie.text = character.species
+        self.nameLabel.text = character.name
+        self.statusImageView.image = UIImage(named: defineImageStatus(status: character.status))
+        self.specieLabel.text = character.species
         self.backgroundColor = UIColor(named: "greenRick")
     }
     

@@ -22,6 +22,8 @@
 		DF24CAAC294B5A6300466A95 /* CharacterCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24CAAB294B5A6300466A95 /* CharacterCellTests.swift */; };
 		DF24CAAF294B5B2A00466A95 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24CAAE294B5B2A00466A95 /* CharacterDetailsViewController.swift */; };
 		DF24CAB2294B5B4200466A95 /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24CAB1294B5B4200466A95 /* CharacterDetailsView.swift */; };
+		DF639100294DEE560022A651 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6390FF294DEE560022A651 /* FilterViewController.swift */; };
+		DF639102294DEE7C0022A651 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF639101294DEE7C0022A651 /* FilterView.swift */; };
 		DFAAC72729479F1200DDAE67 /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAAC72629479F1200DDAE67 /* CharacterCollectionViewCell.swift */; };
 		DFAAC72B29479F6400DDAE67 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAAC72A29479F6400DDAE67 /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,8 @@
 		DF24CAAB294B5A6300466A95 /* CharacterCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCellTests.swift; sourceTree = "<group>"; };
 		DF24CAAE294B5B2A00466A95 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		DF24CAB1294B5B4200466A95 /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
+		DF6390FF294DEE560022A651 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		DF639101294DEE7C0022A651 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		DFAAC72629479F1200DDAE67 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFAAC72A29479F6400DDAE67 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +137,7 @@
 				C1D0694F2767DBAE00883CE8 /* Application */,
 				C1D069532767DE4E00883CE8 /* Home */,
 				DF24CAAD294B5B0400466A95 /* CharacterDetails */,
+				DF6390FD294DEE330022A651 /* Filter */,
 				DF1348F92948E487005C9052 /* DataManager.swift */,
 			);
 			path = Sources;
@@ -197,6 +202,23 @@
 			isa = PBXGroup;
 			children = (
 				DF24CAB1294B5B4200466A95 /* CharacterDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DF6390FD294DEE330022A651 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				DF6390FE294DEE450022A651 /* Views */,
+				DF6390FF294DEE560022A651 /* FilterViewController.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		DF6390FE294DEE450022A651 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DF639101294DEE7C0022A651 /* FilterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,12 +339,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF639102294DEE7C0022A651 /* FilterView.swift in Sources */,
 				DFAAC72729479F1200DDAE67 /* CharacterCollectionViewCell.swift in Sources */,
 				DF1348FA2948E487005C9052 /* DataManager.swift in Sources */,
 				DF1348FD2948E526005C9052 /* Character.swift in Sources */,
 				DF24CAB2294B5B4200466A95 /* CharacterDetailsView.swift in Sources */,
 				C1D0693C2767DA8B00883CE8 /* AppDelegate.swift in Sources */,
 				C1D0693E2767DA8B00883CE8 /* SceneDelegate.swift in Sources */,
+				DF639100294DEE560022A651 /* FilterViewController.swift in Sources */,
 				DF1349012948E828005C9052 /* PageInfo.swift in Sources */,
 				DF1348FF2948E810005C9052 /* ApiResponse.swift in Sources */,
 				DF24CAAF294B5B2A00466A95 /* CharacterDetailsViewController.swift in Sources */,

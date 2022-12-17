@@ -47,10 +47,6 @@ class DataManager {
                 self.characters += apiResponse.results
                 self.next = apiResponse.info.next
                 
-                for character in self.characters {
-                    self.loadImage(character: character)
-                }
-                
                 DispatchQueue.main.async {
                     completion()
                 }
@@ -61,14 +57,28 @@ class DataManager {
         task.resume()
     }
     
-    public func loadImage(character: Character) {
-        guard let url: URL = URL(string: character.image) else {return}
+    public func loadImage(character: Character, completion: @escaping (UIImage?) -> Swift.Void) {
+        guard let url: URL = URL(string: character.image) else { return }
         
-        DispatchQueue.global(qos: .utility).async {
-            guard let data = try? Data(contentsOf: url) else {return}
-            guard let image = UIImage(data: data) else {return}
-            self.imageCash.setObject(image, forKey: NSNumber(value: character.id))
+        if let cachedImage = self.imageCash.object(forKey: NSNumber(value: character.id)) {
+            DispatchQueue.main.async {
+                completion(cachedImage)
+            }
+            return
         }
         
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let responseData = data, let image = UIImage(data: responseData), error == nil else {
+                return
+            }
+            
+            self.imageCash.setObject(image, forKey: NSNumber(value: character.id))
+            DispatchQueue.main.async {
+                completion(image)
+            }
+            return
+            
+        }.resume()
     }
 }

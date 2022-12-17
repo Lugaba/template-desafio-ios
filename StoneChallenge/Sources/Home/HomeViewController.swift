@@ -9,7 +9,7 @@ class HomeViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        title = "Rick & Morty"
+        title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         view.addSubview(collectionView)
@@ -24,9 +24,24 @@ class HomeViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(dataFilter))
+        
         DataManager.shared.getAllCharacters {
             self.collectionView.characterCollection.reloadData()
         }
+    }
+    
+    func navigateToDetails(character: Character) {
+        let viewController = CharacterDetailsViewController()
+        viewController.character = character
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func dataFilter() {
+        let viewController = FilterViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -64,12 +79,5 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
         }
     }
-    
-    func navigateToDetails(character: Character) {
-        let viewController = CharacterDetailsViewController()
-        viewController.character = character
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
 }
 
