@@ -18,6 +18,7 @@ class FilterView: UIView {
     lazy var textField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
+        textField.placeholder = "Rick"
         textField.layer.cornerRadius = 5
         return textField
     }()
@@ -30,6 +31,8 @@ class FilterView: UIView {
     
     lazy var aliveButton: UIButton = {
         let button = UIButton()
+        button.tag = 1
+        button.addTarget(self, action: #selector(selectButton(sender:)), for: .touchUpInside)
         button.setTitle("Alive", for: .normal)
         button.backgroundColor = UIColor(named: "greenRick")
         button.layer.cornerRadius = 10
@@ -38,16 +41,20 @@ class FilterView: UIView {
     
     lazy var deadButton: UIButton = {
         let button = UIButton()
+        button.tag = 2
+        button.addTarget(self, action: #selector(selectButton(sender:)), for: .touchUpInside)
         button.setTitle("Dead", for: .normal)
-        button.backgroundColor = UIColor(named: "greenRick")
+        button.backgroundColor = UIColor(named: "darkGreenRick")
         button.layer.cornerRadius = 10
         return button
     }()
     
     lazy var unknownButton: UIButton = {
         let button = UIButton()
+        button.tag = 3
+        button.addTarget(self, action: #selector(selectButton(sender:)), for: .touchUpInside)
         button.setTitle("Unknow", for: .normal)
-        button.backgroundColor = UIColor(named: "greenRick")
+        button.backgroundColor = UIColor(named: "darkGreenRick")
         button.layer.cornerRadius = 10
         return button
     }()
@@ -58,6 +65,11 @@ class FilterView: UIView {
         button.backgroundColor = UIColor(named: "greenRick")
         button.layer.cornerRadius = 10
         return button
+    }()
+    
+    lazy var statusSelected: String = {
+        let status = "alive"
+        return status
     }()
     
     
@@ -129,4 +141,45 @@ class FilterView: UIView {
         filterButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     
+    func getValueTextField() -> String {
+        guard let text = textField.text else { return "Rick"}
+        return text
+    }
+    
+    func getStatusSelected() -> String {
+        return self.statusSelected
+    }
+    
+    @objc
+    func selectButton(sender: UIButton) {
+        switch sender.tag {
+        case 1:
+            self.statusSelected = "alive"
+            defineButtonsColors(senderTag: sender.tag)
+            break
+        case 2:
+            self.statusSelected = "dead"
+            defineButtonsColors(senderTag: sender.tag)
+            break
+        case 3:
+            self.statusSelected = "unknow"
+            defineButtonsColors(senderTag: sender.tag)
+            break
+        default:
+            self.statusSelected = "alive"
+            defineButtonsColors(senderTag: 1)
+            break
+        }
+    }
+    
+    func defineButtonsColors(senderTag: Int) {
+        let buttons = [aliveButton, deadButton, unknownButton]
+        for button in buttons {
+            if button.tag == senderTag {
+                button.backgroundColor = UIColor(named: "greenRick")
+            } else {
+                button.backgroundColor = UIColor(named: "darkGreenRick")
+            }
+        }
+    }
 }

@@ -18,6 +18,13 @@ class HomeView: UIView {
         return collectionView
     }()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to reset filter")
+        return refreshControl
+    }()
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setUp()
@@ -29,6 +36,7 @@ class HomeView: UIView {
     
     func setUp() {
         self.addSubview(characterCollection)
+        characterCollection.addSubview(refreshControl)
         self.backgroundColor = UIColor(named: "backgroundRick")
         self.createConstraints()
     }
@@ -46,4 +54,8 @@ class HomeView: UIView {
         characterCollection.delegate = delegate
     }
     
+    func reloadCollectionView() {
+        self.characterCollection.reloadData()
+    }
+
 }

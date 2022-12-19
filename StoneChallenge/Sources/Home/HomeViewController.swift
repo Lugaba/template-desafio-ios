@@ -1,5 +1,9 @@
 import UIKit
 
+protocol ReloadCollectionView: AnyObject {
+    func reloadCollectionView()
+}
+
 class HomeViewController: UIViewController {
     
     let collectionView: HomeView = HomeView()
@@ -21,6 +25,8 @@ class HomeViewController: UIViewController {
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        collectionView.refreshControl.addTarget(self, action: #selector(removeFilter), for: .valueChanged)
     }
     
     override func viewDidLoad() {
@@ -29,7 +35,7 @@ class HomeViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(dataFilter))
         
         DataManager.shared.getAllCharacters {
-            self.collectionView.characterCollection.reloadData()
+            self.reloadCollectionView()
         }
     }
     
@@ -41,7 +47,18 @@ class HomeViewController: UIViewController {
     
     @objc func dataFilter() {
         let viewController = FilterViewController()
+        viewController.delegate = self
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc
+    func removeFilter() {
+        dataManager.characters = []
+        dataManager.next = "https://rickandmortyapi.com/api/character"
+        dataManager.getAllCharacters {
+            self.collectionView.refreshControl.endRefreshing()
+            self.reloadCollectionView()
+        }
     }
 }
 
@@ -74,10 +91,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         if indexPath.row == dataManager.characters.count-1 && canLoad {
             canLoad = false
             DataManager.shared.getAllCharacters {
-                self.canLoad = true
-                collectionView.reloadData()
+                self.reloadCollectionView()
             }
         }
+    }
+}
+
+extension HomeViewController: ReloadCollectionView {
+    func reloadCollectionView() {
+        self.canLoad = true
+        self.collectionView.reloadCollectionView()
     }
 }
 
