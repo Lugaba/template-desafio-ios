@@ -17,13 +17,16 @@
 		DF1348FF2948E810005C9052 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1348FE2948E810005C9052 /* ApiResponse.swift */; };
 		DF1349012948E828005C9052 /* PageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1349002948E828005C9052 /* PageInfo.swift */; };
 		DF1349042948F3E7005C9052 /* get_schwifty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF1349032948F3E7005C9052 /* get_schwifty.ttf */; };
-		DF13490C29490339005C9052 /* StoneChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF13490B29490339005C9052 /* StoneChallengeTests.swift */; };
 		DF24CAAA294B589F00466A95 /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24CAA9294B589F00466A95 /* HomeViewControllerTests.swift */; };
 		DF24CAAC294B5A6300466A95 /* CharacterCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24CAAB294B5A6300466A95 /* CharacterCellTests.swift */; };
 		DF24CAAF294B5B2A00466A95 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24CAAE294B5B2A00466A95 /* CharacterDetailsViewController.swift */; };
 		DF24CAB2294B5B4200466A95 /* CharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF24CAB1294B5B4200466A95 /* CharacterDetailsView.swift */; };
 		DF639100294DEE560022A651 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6390FF294DEE560022A651 /* FilterViewController.swift */; };
 		DF639102294DEE7C0022A651 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF639101294DEE7C0022A651 /* FilterView.swift */; };
+		DF639104295201B50022A651 /* FilterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF639103295201B50022A651 /* FilterViewTests.swift */; };
+		DF6391062952053C0022A651 /* CharacterDetailsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6391052952053C0022A651 /* CharacterDetailsViewTests.swift */; };
+		DF639109295206940022A651 /* MockReloadCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF639108295206940022A651 /* MockReloadCollectionView.swift */; };
+		DF63910B295206F60022A651 /* FilterViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF63910A295206F60022A651 /* FilterViewControllerTests.swift */; };
 		DFAAC72729479F1200DDAE67 /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAAC72629479F1200DDAE67 /* CharacterCollectionViewCell.swift */; };
 		DFAAC72B29479F6400DDAE67 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFAAC72A29479F6400DDAE67 /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -52,14 +55,16 @@
 		DF1349002948E828005C9052 /* PageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageInfo.swift; sourceTree = "<group>"; };
 		DF1349032948F3E7005C9052 /* get_schwifty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = get_schwifty.ttf; sourceTree = "<group>"; };
 		DF13490929490339005C9052 /* StoneChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoneChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF13490B29490339005C9052 /* StoneChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoneChallengeTests.swift; sourceTree = "<group>"; };
-		DF24CAA2294B586200466A95 /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
 		DF24CAA9294B589F00466A95 /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
 		DF24CAAB294B5A6300466A95 /* CharacterCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCellTests.swift; sourceTree = "<group>"; };
 		DF24CAAE294B5B2A00466A95 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		DF24CAB1294B5B4200466A95 /* CharacterDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsView.swift; sourceTree = "<group>"; };
 		DF6390FF294DEE560022A651 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		DF639101294DEE7C0022A651 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		DF639103295201B50022A651 /* FilterViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewTests.swift; sourceTree = "<group>"; };
+		DF6391052952053C0022A651 /* CharacterDetailsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewTests.swift; sourceTree = "<group>"; };
+		DF639108295206940022A651 /* MockReloadCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockReloadCollectionView.swift; sourceTree = "<group>"; };
+		DF63910A295206F60022A651 /* FilterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewControllerTests.swift; sourceTree = "<group>"; };
 		DFAAC72629479F1200DDAE67 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		DFAAC72A29479F6400DDAE67 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,7 +92,6 @@
 			children = (
 				C1D0693A2767DA8B00883CE8 /* StoneChallenge */,
 				DF13490A29490339005C9052 /* StoneChallengeTests */,
-				DF24CAA1294B586200466A95 /* HomeViewControllerTests */,
 				C1D069392767DA8B00883CE8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -174,19 +178,14 @@
 		DF13490A29490339005C9052 /* StoneChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
+				DF63910A295206F60022A651 /* FilterViewControllerTests.swift */,
+				DF639107295206760022A651 /* Mocks */,
+				DF6391052952053C0022A651 /* CharacterDetailsViewTests.swift */,
+				DF639103295201B50022A651 /* FilterViewTests.swift */,
 				DF24CAAB294B5A6300466A95 /* CharacterCellTests.swift */,
 				DF24CAA9294B589F00466A95 /* HomeViewControllerTests.swift */,
-				DF13490B29490339005C9052 /* StoneChallengeTests.swift */,
 			);
 			path = StoneChallengeTests;
-			sourceTree = "<group>";
-		};
-		DF24CAA1294B586200466A95 /* HomeViewControllerTests */ = {
-			isa = PBXGroup;
-			children = (
-				DF24CAA2294B586200466A95 /* HomeViewControllerTests.swift */,
-			);
-			path = HomeViewControllerTests;
 			sourceTree = "<group>";
 		};
 		DF24CAAD294B5B0400466A95 /* CharacterDetails */ = {
@@ -221,6 +220,14 @@
 				DF639101294DEE7C0022A651 /* FilterView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		DF639107295206760022A651 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				DF639108295206940022A651 /* MockReloadCollectionView.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		DFAAC72829479F2000DDAE67 /* Collection Cells */ = {
@@ -359,9 +366,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF13490C29490339005C9052 /* StoneChallengeTests.swift in Sources */,
+				DF639109295206940022A651 /* MockReloadCollectionView.swift in Sources */,
+				DF639104295201B50022A651 /* FilterViewTests.swift in Sources */,
+				DF63910B295206F60022A651 /* FilterViewControllerTests.swift in Sources */,
 				DF24CAAA294B589F00466A95 /* HomeViewControllerTests.swift in Sources */,
 				DF24CAAC294B5A6300466A95 /* CharacterCellTests.swift in Sources */,
+				DF6391062952053C0022A651 /* CharacterDetailsViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,7 @@ protocol ReloadCollectionView: AnyObject {
 
 class HomeViewController: UIViewController {
     
-    let collectionView: HomeView = HomeView()
+    let homeView: HomeView = HomeView()
     var canLoad = true
     let dataManager = DataManager.shared
     
@@ -16,23 +16,25 @@ class HomeViewController: UIViewController {
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        view.addSubview(collectionView)
-        collectionView.bindCollection(dataSource: self, delegate: self)
+        view.addSubview(homeView)
+        homeView.bindCollection(dataSource: self, delegate: self)
         
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        homeView.translatesAutoresizingMaskIntoConstraints = false
+        homeView.translatesAutoresizingMaskIntoConstraints = false
+        homeView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        homeView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        homeView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        homeView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        collectionView.refreshControl.addTarget(self, action: #selector(removeFilter), for: .valueChanged)
+        homeView.refreshControl.addTarget(self, action: #selector(removeFilter), for: .valueChanged)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "slider.horizontal.3"), style: .plain, target: self, action: #selector(dataFilter))
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "GetSchwifty-Regular", size: 20)!]
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "GetSchwifty-Regular", size: 44)!]
         
         DataManager.shared.getAllCharacters {
             self.reloadCollectionView()
@@ -56,7 +58,7 @@ class HomeViewController: UIViewController {
         dataManager.characters = []
         dataManager.next = "https://rickandmortyapi.com/api/character"
         dataManager.getAllCharacters {
-            self.collectionView.refreshControl.endRefreshing()
+            self.homeView.refreshControl.endRefreshing()
             self.reloadCollectionView()
         }
     }
@@ -64,7 +66,13 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if dataManager.characters.isEmpty {
+            self.homeView.setEmptyState()
+        } else {
+            self.homeView.removeEmptyState()
+        }
         return dataManager.characters.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -100,7 +108,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension HomeViewController: ReloadCollectionView {
     func reloadCollectionView() {
         self.canLoad = true
-        self.collectionView.reloadCollectionView()
+        self.homeView.reloadCollectionView()
     }
 }
 

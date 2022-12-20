@@ -37,6 +37,7 @@ class HomeView: UIView {
     func setUp() {
         self.addSubview(characterCollection)
         characterCollection.addSubview(refreshControl)
+        characterCollection.alwaysBounceVertical = true
         self.backgroundColor = UIColor(named: "backgroundRick")
         self.createConstraints()
     }
@@ -56,6 +57,18 @@ class HomeView: UIView {
     
     func reloadCollectionView() {
         self.characterCollection.reloadData()
+    }
+    
+    func setEmptyState() {
+        let label = UILabel()
+        label.text = "No characters found"
+        label.sizeToFit()
+        label.textAlignment = .center
+        characterCollection.backgroundView = label
+    }
+    
+    func removeEmptyState() {
+        characterCollection.backgroundView = nil
     }
 
 }

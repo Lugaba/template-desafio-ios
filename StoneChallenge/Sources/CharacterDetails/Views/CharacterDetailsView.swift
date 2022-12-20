@@ -99,6 +99,7 @@ class CharacterDetailsView: UIView {
         if let cachedImage = DataManager.shared.imageCash.object(forKey: NSNumber(value: character.id)) {
             imageView.image = cachedImage
         }
+
         typeLabel.text = "TYPE: \(character.type)"
         statusLabel.text = "STATUS: \(character.status)"
         genderLabel.text = "GENDER: \(character.gender)"

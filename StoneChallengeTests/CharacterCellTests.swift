@@ -44,4 +44,31 @@ final class CharacterCellTests: XCTestCase {
         //Then
         XCTAssertTrue(statusReturn == "unknownIcon")
     }
+    
+    func testSetupImage() {
+        //Given
+        let sut = CharacterCollectionViewCell()
+        let image = UIImage()
+        
+        //When
+        sut.setupImage(image: image)
+        
+        //Then
+        XCTAssertTrue(sut.imageView.image == image)
+        
+    }
+    
+    func testSetupCell() {
+        //Given
+        let sut = CharacterCollectionViewCell()
+        let character = Character(id: 1, name: "Rick", status: "alive", species: "human", type: "human", gender: "masculine", image: "aliveIcon")
+        
+        //When
+        sut.setupCell(character: character)
+        
+        //Then
+        XCTAssertTrue(sut.nameLabel.text == character.name)
+        XCTAssertTrue(sut.specieLabel.text == character.species)
+
+    }
 }

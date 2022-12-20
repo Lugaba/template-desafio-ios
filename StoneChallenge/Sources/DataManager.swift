@@ -93,6 +93,9 @@ class DataManager {
                     completion()
                 }
             } catch {
+                DispatchQueue.main.async {
+                    completion()
+                }
                 print(error)
             }
         }
